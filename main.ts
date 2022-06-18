@@ -88,7 +88,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.ball, function (sprite, otherSpri
     scene.cameraShake(2, 500)
     mySprite3.setPosition(60, 60)
     mySprite3.setVelocity(70, 20)
-    statusbar.value += 10
+    statusbar.value += 5
 })
 statusbars.onStatusReached(StatusBarKind.Energy, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Percentage, 100, function (status) {
     game.showLongText("Red player wins", DialogLayout.Center)
@@ -101,7 +101,7 @@ sprites.onOverlap(SpriteKind.caca, SpriteKind.ball, function (sprite, otherSprit
     scene.cameraShake(2, 500)
     mySprite3.setPosition(100, 60)
     mySprite3.setVelocity(70, 20)
-    statusbar.value += -10
+    statusbar.value += -5
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ball, function (sprite, otherSprite) {
     otherSprite.vx = 0 - otherSprite.vx
