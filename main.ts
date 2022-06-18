@@ -36,6 +36,10 @@ function create_left_mySprite () {
     controller.moveSprite(mySprite, 0, 150)
     mySprite.setStayInScreen(true)
 }
+statusbars.onStatusReached(StatusBarKind.Energy, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Percentage, -10, function (status) {
+    game.showLongText("Blue player wins", DialogLayout.Center)
+    game.reset()
+})
 function create_right () {
     mySprite2 = sprites.create(img`
         . 1 1 1 1 1 
@@ -63,8 +67,8 @@ function create_right () {
     controller.player2.moveSprite(mySprite2, 0, 150)
     mySprite2.setStayInScreen(true)
 }
-statusbars.onStatusReached(StatusBarKind.Health, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Percentage, 0, function (status) {
-    game.showLongText("Blue player wins", DialogLayout.Center)
+statusbars.onStatusReached(StatusBarKind.Energy, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Percentage, 110, function (status) {
+    game.showLongText("Red player wins", DialogLayout.Center)
     game.reset()
 })
 function create_ball () {
@@ -90,17 +94,13 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.ball, function (sprite, otherSpri
     mySprite3.setVelocity(70, 20)
     statusbar.value += 5
 })
-statusbars.onStatusReached(StatusBarKind.Energy, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Percentage, 100, function (status) {
-    game.showLongText("Red player wins", DialogLayout.Center)
-    game.reset()
-})
 sprites.onOverlap(SpriteKind.caca, SpriteKind.ball, function (sprite, otherSprite) {
     info.player2.changeScoreBy(1)
     otherSprite.vx = 0 - otherSprite.vx
     music.baDing.play()
     scene.cameraShake(2, 500)
     mySprite3.setPosition(100, 60)
-    mySprite3.setVelocity(70, 20)
+    mySprite3.setVelocity(-70, 20)
     statusbar.value += -5
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ball, function (sprite, otherSprite) {
